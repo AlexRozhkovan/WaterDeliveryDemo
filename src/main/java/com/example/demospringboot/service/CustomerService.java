@@ -1,6 +1,7 @@
 package com.example.demospringboot.service;
 
 import com.example.demospringboot.domain.Customer;
+import com.example.demospringboot.domain.Order;
 
 import java.util.List;
 
@@ -18,6 +19,16 @@ public interface CustomerService {
     List<Customer> getAllUsers();
 
     Customer getCustomerById(final Long id);
+
+    List<Customer> getCustomerByFirstName(final String firstName);
+
+    List<Customer> getCustomerByLastName(final String lastName);
+
+    List<Customer> getCustomerByPhone(final String phone);
+
+ /*   List<Order> getValues(final String name);
+
+    Customer getCustomerByOrder(final String orderName);*/
 
     Customer updateCustomer(final Customer customer);
 

@@ -10,55 +10,89 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
-    private String country;
+    private String name;
 
-    private String city;
+    private String startDate;
 
-    private String zipCode;
+    private String EndDate;
 
-    @OneToOne(mappedBy = "order")
-    private Customer customer;
-
-
-
-
-    public Customer getEmployee() {
-        return customer;
-    }
-
-    public void setEmployee(Customer customer) {
-        this.customer = customer;
-    }
-
-    public long getId() {
+    public long getId()
+    {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(long id)
+    {
         this.id = id;
     }
 
-    public String getCountry() {
-        return country;
+    public String getName()
+    {
+        return name;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setName(String name)
+    {
+        this.name = name;
     }
 
-    public String getCity() {
-        return city;
+    public String getStartDate()
+    {
+        return startDate;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setStartDate(String startDate)
+    {
+        this.startDate = startDate;
     }
 
-    public String getZipCode() {
-        return zipCode;
+    public String getEndDate()
+    {
+        return EndDate;
     }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    public void setEndDate(String endDate)
+    {
+        EndDate = endDate;
     }
+
+    public String getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(String status)
+    {
+        this.status = status;
+    }
+
+    public String getCost()
+    {
+        return cost;
+    }
+
+    public void setCost(String cost)
+    {
+        this.cost = cost;
+    }
+
+    public Customer getCustomer()
+    {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer)
+    {
+        this.customer = customer;
+    }
+
+    private String status;
+
+    private String cost;
+
+    @OneToOne(mappedBy = "order")
+    private Customer customer;
 }
+
+
+
