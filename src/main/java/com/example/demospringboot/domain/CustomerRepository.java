@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    List<Employee> findByName(String name);
+    List<Customer> findByName(String name);
 }

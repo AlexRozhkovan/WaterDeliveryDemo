@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "addresses")
-public class Address {
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -16,18 +16,18 @@ public class Address {
 
     private String zipCode;
 
-    @OneToOne(mappedBy = "address")
-    private Employee employee;
+    @OneToOne(mappedBy = "order")
+    private Customer customer;
 
 
 
 
-    public Employee getEmployee() {
-        return employee;
+    public Customer getEmployee() {
+        return customer;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployee(Customer customer) {
+        this.customer = customer;
     }
 
     public long getId() {

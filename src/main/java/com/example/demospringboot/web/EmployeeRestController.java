@@ -1,9 +1,9 @@
 package com.example.demospringboot.web;
 
-import com.example.demospringboot.config.EmployeeConverter;
-import com.example.demospringboot.domain.Employee;
-import com.example.demospringboot.dto.EmployeeDto;
-import com.example.demospringboot.service.EmployeeService;
+import com.example.demospringboot.config.CustomerConverter;
+import com.example.demospringboot.domain.Customer;
+import com.example.demospringboot.dto.CustomerDto;
+import com.example.demospringboot.service.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -14,31 +14,31 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "Employee", description = "Employee API")
+@Tag(name = "Customer", description = "Customer API")
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
 public class EmployeeRestController {
 
-    private final EmployeeService service;
-    private final EmployeeConverter converter;
+    private final CustomerService service;
+    private final CustomerConverter converter;
 
-    public EmployeeRestController(EmployeeService service, EmployeeConverter converter) {
+    public EmployeeRestController(CustomerService service, CustomerConverter converter) {
         this.service = service;
         this.converter = converter;
     }
 
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Add a new employee", description = "endpoint for creating an entity", tags = {"Employee"})
+    @Operation(summary = "Add a new employee", description = "endpoint for creating an entity", tags = {"Customer"})
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Employee created"),
+            @ApiResponse(responseCode = "201", description = "Customer created"),
             @ApiResponse(responseCode = "400", description = "Invalid input"),
-            @ApiResponse(responseCode = "409", description = "Employee already exists")})
-    public EmployeeDto saveEmployee(@RequestBody EmployeeDto requestForSave) {
+            @ApiResponse(responseCode = "409", description = "Customer already exists")})
+    public CustomerDto saveEmployee(@RequestBody CustomerDto requestForSave) {
 
-        Employee employee = converter.getMapperFacade().map(requestForSave, Employee.class);
-        EmployeeDto dto = converter.toDto(service.saveEmployee(employee));
+        Customer customer = converter.getMapperFacade().map(requestForSave, Customer.class);
+        CustomerDto dto = converter.toDto(service.saveCustomer(customer));
 
         return dto;
     }
@@ -46,7 +46,7 @@ public class EmployeeRestController {
     //Получение списка юзеров
     @GetMapping("/users")
     @ResponseStatus(HttpStatus.OK)
-    public List<EmployeeDto> getAllUsers() {
+    public List<CustomerDto> getAllUsers() {
 
         return null;
     }
@@ -54,20 +54,20 @@ public class EmployeeRestController {
     //Получения юзера по id
     @GetMapping("/users/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public EmployeeDto getEmployeeById(@PathVariable long id) {
-        Employee entity = service.getEmployeeById(id);
-        EmployeeDto dto = converter.toDto(entity);
+    public CustomerDto getEmployeeById(@PathVariable long id) {
+        Customer entity = service.getCustomerById(id);
+        CustomerDto dto = converter.toDto(entity);
         return dto;
     }
 
     //Обновление юзера
     @PutMapping("/users/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public EmployeeDto refreshEmployee(@PathVariable("id") long id, @RequestBody EmployeeDto requestForUpdate) {
+    public CustomerDto refreshEmployee(@PathVariable("id") long id, @RequestBody CustomerDto requestForUpdate) {
 
-        Employee entity = service.getEmployeeById(id);
+        Customer entity = service.getCustomerById(id);
         converter.getMapperFacade().map(requestForUpdate, entity);
-        EmployeeDto dto = converter.toDto(service.updateEmployee(entity));
+        CustomerDto dto = converter.toDto(service.updateCustomer(entity));
 
         return dto;
     }
@@ -78,7 +78,7 @@ public class EmployeeRestController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeEmployeeById(@PathVariable long id) {
 
-        service.removeEmployeeById(id);
+        service.removeCustomerById(id);
     }
 
     //Удаление всех юзеров
